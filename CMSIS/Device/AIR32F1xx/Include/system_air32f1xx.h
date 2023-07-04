@@ -95,8 +95,4 @@ extern void SystemCoreClockUpdate(void);
 /**
   * @}
   */
-<<<<<<< Updated upstream
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
-=======
 /************************ (C) COPYRIGHT AirM2M *****END OF FILE****/
->>>>>>> Stashed changes
