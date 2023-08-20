@@ -124,7 +124,7 @@ extern "C" {
                                     || ((__SOURCE__) == RCC_MCO1SOURCE_PLLCLK_DIV10) || ((__SOURCE__) == RCC_MCO1SOURCE_PLLCLK_DIV11) \
                                     || ((__SOURCE__) == RCC_MCO1SOURCE_PLLCLK_DIV12) || ((__SOURCE__) == RCC_MCO1SOURCE_PLLCLK_DIV13) \
                                     || ((__SOURCE__) == RCC_MCO1SOURCE_PLLCLK_DIV14) || ((__SOURCE__) == RCC_MCO1SOURCE_PLLCLK_DIV15) \
-                                    || ((__SOURCE__) == RCC_MCO1SOURCE_PLLCLK_DIV16))
+                                    || ((__SOURCE__) == RCC_MCO1SOURCE_PLLCLK_DIV16) || ((__SOURCE__) == RCC_MCO1SOURCE_PLLCLK_DIV2))
 
 #endif /* AIR32F105xC || AIR32F107xC*/
 
