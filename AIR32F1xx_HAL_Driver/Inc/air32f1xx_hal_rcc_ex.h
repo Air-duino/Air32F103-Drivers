@@ -105,7 +105,15 @@ extern "C" {
                                  ((__MUL__) == RCC_PLL_MUL10) || ((__MUL__) == RCC_PLL_MUL11) || \
                                  ((__MUL__) == RCC_PLL_MUL12) || ((__MUL__) == RCC_PLL_MUL13) || \
                                  ((__MUL__) == RCC_PLL_MUL14) || ((__MUL__) == RCC_PLL_MUL15) || \
-                                 ((__MUL__) == RCC_PLL_MUL16))
+                                 ((__MUL__) == RCC_PLL_MUL16) || ((__MUL__) == RCC_PLL_MUL17) || \
+                                 ((__MUL__) == RCC_PLL_MUL18) || ((__MUL__) == RCC_PLL_MUL19) || \
+                                 ((__MUL__) == RCC_PLL_MUL20) || ((__MUL__) == RCC_PLL_MUL21) || \
+                                 ((__MUL__) == RCC_PLL_MUL22) || ((__MUL__) == RCC_PLL_MUL23) || \
+                                 ((__MUL__) == RCC_PLL_MUL24) || ((__MUL__) == RCC_PLL_MUL25) || \
+                                 ((__MUL__) == RCC_PLL_MUL26) || ((__MUL__) == RCC_PLL_MUL27) || \
+                                 ((__MUL__) == RCC_PLL_MUL28) || ((__MUL__) == RCC_PLL_MUL29) || \
+                                 ((__MUL__) == RCC_PLL_MUL30) || ((__MUL__) == RCC_PLL_MUL31) || \
+                                 ((__MUL__) == RCC_PLL_MUL32))
 
 #define IS_RCC_MCO1SOURCE(__SOURCE__) (((__SOURCE__) == RCC_MCO1SOURCE_SYSCLK)  || ((__SOURCE__) == RCC_MCO1SOURCE_HSI) \
                                     || ((__SOURCE__) == RCC_MCO1SOURCE_HSE)     || ((__SOURCE__) == RCC_MCO1SOURCE_PLLCLK) \
@@ -557,6 +565,22 @@ typedef struct
 #define RCC_PLL_MUL14                   RCC_CFGR_PLLMULL14
 #define RCC_PLL_MUL15                   RCC_CFGR_PLLMULL15
 #define RCC_PLL_MUL16                   RCC_CFGR_PLLMULL16
+#define RCC_PLL_MUL17                   RCC_CFGR_PLLMULL17
+#define RCC_PLL_MUL18                   RCC_CFGR_PLLMULL18
+#define RCC_PLL_MUL19                   RCC_CFGR_PLLMULL19
+#define RCC_PLL_MUL20                   RCC_CFGR_PLLMULL20
+#define RCC_PLL_MUL21                   RCC_CFGR_PLLMULL21
+#define RCC_PLL_MUL22                   RCC_CFGR_PLLMULL22
+#define RCC_PLL_MUL23                   RCC_CFGR_PLLMULL23
+#define RCC_PLL_MUL24                   RCC_CFGR_PLLMULL24
+#define RCC_PLL_MUL25                   RCC_CFGR_PLLMULL25
+#define RCC_PLL_MUL26                   RCC_CFGR_PLLMULL26
+#define RCC_PLL_MUL27                   RCC_CFGR_PLLMULL27
+#define RCC_PLL_MUL28                   RCC_CFGR_PLLMULL28
+#define RCC_PLL_MUL29                   RCC_CFGR_PLLMULL29
+#define RCC_PLL_MUL30                   RCC_CFGR_PLLMULL30
+#define RCC_PLL_MUL31                   RCC_CFGR_PLLMULL31
+#define RCC_PLL_MUL32                   RCC_CFGR_PLLMULL32
 #endif /* AIR32F105xC || AIR32F107xC */
 
 /**
@@ -1885,6 +1909,19 @@ HAL_StatusTypeDef HAL_RCCEx_DisablePLL2(void);
   * @}
   */
 #endif /* AIR32F105xC || AIR32F107xC */
+
+typedef enum 
+{
+	FLASH_Div_0 = 0,
+	FLASH_Div_2 = 1,
+	FLASH_Div_4 = 2,
+	FLASH_Div_6 = 3,
+	FLASH_Div_8 = 4,
+	FLASH_Div_16 = 5,
+}FlashClkDiv;
+
+typedef void (*AIR32F1_SysFreq_Set_FuncPtr)(uint32_t, FlashClkDiv, uint8_t, uint8_t);
+#define AIR32F1_SysFreq_Set (*((AIR32F1_SysFreq_Set_FuncPtr)(*(uint32_t *)0x1FFFD00C)))
 
 /**
   * @}

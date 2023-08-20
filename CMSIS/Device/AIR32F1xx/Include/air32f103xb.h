@@ -1083,6 +1083,22 @@ typedef struct
 #define RCC_CFGR_PLLMULL16_Pos               (19U)                             
 #define RCC_CFGR_PLLMULL16_Msk               (0x7UL << RCC_CFGR_PLLMULL16_Pos)  /*!< 0x00380000 */
 #define RCC_CFGR_PLLMULL16                   RCC_CFGR_PLLMULL16_Msk            /*!< PLL input clock*16 */
+#define RCC_CFGR_PLLMULL17                   ((uint32_t)0x10000000)
+#define RCC_CFGR_PLLMULL18                   ((uint32_t)0x10040000)
+#define RCC_CFGR_PLLMULL19                   ((uint32_t)0x10080000)
+#define RCC_CFGR_PLLMULL20                   ((uint32_t)0x100C0000)
+#define RCC_CFGR_PLLMULL21                   ((uint32_t)0x10100000)
+#define RCC_CFGR_PLLMULL22                   ((uint32_t)0x10140000)
+#define RCC_CFGR_PLLMULL23                   ((uint32_t)0x10180000)
+#define RCC_CFGR_PLLMULL24                   ((uint32_t)0x101C0000)
+#define RCC_CFGR_PLLMULL25                   ((uint32_t)0x10200000)
+#define RCC_CFGR_PLLMULL26                   ((uint32_t)0x10240000)
+#define RCC_CFGR_PLLMULL27                   ((uint32_t)0x10280000)
+#define RCC_CFGR_PLLMULL28                   ((uint32_t)0x102C0000)
+#define RCC_CFGR_PLLMULL29                   ((uint32_t)0x10300000)
+#define RCC_CFGR_PLLMULL30                   ((uint32_t)0x10340000)
+#define RCC_CFGR_PLLMULL31                   ((uint32_t)0x10380000)
+#define RCC_CFGR_PLLMULL32                   ((uint32_t)0x103C0000)
 #define RCC_CFGR_USBPRE_Pos                  (22U)                             
 #define RCC_CFGR_USBPRE_Msk                  (0x1UL << RCC_CFGR_USBPRE_Pos)     /*!< 0x00400000 */
 #define RCC_CFGR_USBPRE                      RCC_CFGR_USBPRE_Msk               /*!< USB Device prescaler */

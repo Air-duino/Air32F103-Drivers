@@ -836,7 +836,8 @@ uint32_t              HAL_UART_GetError(UART_HandleTypeDef *huart);
 #define IS_UART_BAUDRATE(BAUDRATE) ((BAUDRATE) <= 4500000U)
 #define IS_UART_ADDRESS(ADDRESS) ((ADDRESS) <= 0x0FU)
 
-#define UART_DIV_SAMPLING16(_PCLK_, _BAUD_)            (((_PCLK_)*25U)/(4U*(_BAUD_)))
+// #define UART_DIV_SAMPLING16(_PCLK_, _BAUD_)            (((_PCLK_)*25U)/(4U*(_BAUD_)))
+#define UART_DIV_SAMPLING16(_PCLK_, _BAUD_)            ((_PCLK_)/(4U*(_BAUD_))*25U)
 #define UART_DIVMANT_SAMPLING16(_PCLK_, _BAUD_)        (UART_DIV_SAMPLING16((_PCLK_), (_BAUD_))/100U)
 #define UART_DIVFRAQ_SAMPLING16(_PCLK_, _BAUD_)        ((((UART_DIV_SAMPLING16((_PCLK_), (_BAUD_)) - (UART_DIVMANT_SAMPLING16((_PCLK_), (_BAUD_)) * 100U)) * 16U) + 50U) / 100U)
 /* UART BRR = mantissa + overflow + fraction

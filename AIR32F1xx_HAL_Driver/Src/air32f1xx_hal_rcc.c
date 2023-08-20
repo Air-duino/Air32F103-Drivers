@@ -725,12 +725,31 @@ HAL_StatusTypeDef HAL_RCC_OscConfig(RCC_OscInitTypeDef  *RCC_OscInitStruct)
 #endif /* RCC_CFGR2_PREDIV1SRC */
 
           /* Set PREDIV1 Value */
+          RCC->CFGR = (RCC->CFGR & ~0x00030000);
           __HAL_RCC_HSE_PREDIV_CONFIG(RCC_OscInitStruct->HSEPredivValue);
         }
 
         /* Configure the main PLL clock source and multiplication factors. */
-        __HAL_RCC_PLL_CONFIG(RCC_OscInitStruct->PLL.PLLSource,
-                             RCC_OscInitStruct->PLL.PLLMUL);
+        /* __HAL_RCC_PLL_CONFIG(RCC_OscInitStruct->PLL.PLLSource,
+                             RCC_OscInitStruct->PLL.PLLMUL); */
+        *(volatile uint32_t *)(0x400210F0) = 1;//开启sys_cfg门控
+	      *(volatile uint32_t *)(0x40016C00) = 0xa7d93a86;//解一、二、三级锁
+	      *(volatile uint32_t *)(0x40016C00) = 0xab12dfcd;
+	      *(volatile uint32_t *)(0x40016C00) = 0xcded3526;
+	      *(volatile uint32_t *)(0x4002228C) = 0xa5a5a5a5;//QSPI解锁
+
+        // 默认Flash读取等待时间为2个CPU周期
+        AIR32F1_SysFreq_Set(RCC_OscInitStruct->PLL.PLLMUL,FLASH_Div_2 ,0,1);
+
+        RCC->CFGR |= RCC_OscInitStruct->PLL.PLLSource;
+
+        //恢复配置前状态
+        *(volatile uint32_t *)(0x400210F0) = 0;//开启sys_cfg门控
+        *(volatile uint32_t *)(0x40016C00) = ~0xa7d93a86;//加一、二、三级锁
+        *(volatile uint32_t *)(0x40016C00) = ~0xab12dfcd;
+        *(volatile uint32_t *)(0x40016C00) = ~0xcded3526;
+        *(volatile uint32_t *)(0x4002228C) = ~0xa5a5a5a5;//QSPI解锁
+
         /* Enable the main PLL. */
         __HAL_RCC_PLL_ENABLE();
 
@@ -1085,7 +1104,8 @@ uint32_t HAL_RCC_GetSysClockFreq(void)
   const uint8_t aPLLMULFactorTable[14] = {0, 0, 4, 5, 6, 7, 8, 9, 0, 0, 0, 0, 0, 13};
   const uint8_t aPredivFactorTable[16] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16};
 #else
-  const uint8_t aPLLMULFactorTable[16] = {2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 16};
+  const uint8_t aPLLMULFactorTable[] = {2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 16, 17, 18, 19,
+  20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32};
 #if defined(RCC_CFGR2_PREDIV1)
   const uint8_t aPredivFactorTable[16] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16};
 #else
@@ -1111,7 +1131,17 @@ uint32_t HAL_RCC_GetSysClockFreq(void)
     }
     case RCC_SYSCLKSOURCE_STATUS_PLLCLK:  /* PLL used as system clock */
     {
-      pllmul = aPLLMULFactorTable[(uint32_t)(tmpreg & RCC_CFGR_PLLMULL) >> RCC_CFGR_PLLMULL_Pos];
+      uint32_t pllMul4 = 0; // PLL MUL的第5个字节
+      pllMul4 = tmpreg & (1UL << 28);
+      if(pllMul4 == 0)
+      {
+        pllmul = aPLLMULFactorTable[(uint32_t)(tmpreg & RCC_CFGR_PLLMULL) >> RCC_CFGR_PLLMULL_Pos];
+      }
+      else
+      {
+        pllmul = aPLLMULFactorTable[((uint32_t)(tmpreg & RCC_CFGR_PLLMULL) >> RCC_CFGR_PLLMULL_Pos) + 16];
+      }
+      
       if ((tmpreg & RCC_CFGR_PLLSRC) != RCC_PLLSOURCE_HSI_DIV2)
       {
 #if defined(RCC_CFGR2_PREDIV1)
