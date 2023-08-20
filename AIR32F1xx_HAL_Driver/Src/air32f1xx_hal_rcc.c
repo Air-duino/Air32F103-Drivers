@@ -1043,7 +1043,15 @@ void HAL_RCC_MCOConfig(uint32_t RCC_MCOx, uint32_t RCC_MCOSource, uint32_t RCC_M
   HAL_GPIO_Init(MCO1_GPIO_PORT, &gpio);
 
   /* Configure the MCO clock source */
-  __HAL_RCC_MCO1_CONFIG(RCC_MCOSource, RCC_MCODiv);
+  if(RCC_MCOSource <= RCC_MCO1SOURCE_PLLCLK)
+  {
+    __HAL_RCC_MCO1_CONFIG(RCC_MCOSource, RCC_MCODiv);
+  }
+  else
+  {
+    __HAL_RCC_MCO1_CONFIG(RCC_MCO1SOURCE_PLLCLK, RCC_MCODiv);
+    RCC->RCC_MCO_VAL = (RCC_MCOSource & 0x0F);
+  }
 }
 
 /**

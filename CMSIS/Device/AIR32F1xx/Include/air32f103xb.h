@@ -434,6 +434,10 @@ typedef struct
   __IO uint32_t BDCR;
   __IO uint32_t CSR;
 
+  __IO uint32_t RCC_RSVD1[(0x30-0x28) >> 2];
+  __IO uint32_t RCC_MCO_VAL;
+  __IO uint32_t RCC_RSVD2[(0xF0-0x34) >> 2];
+  __IO uint32_t RCC_SYSCFG_CONFIG;
 
 } RCC_TypeDef;
 
@@ -1116,6 +1120,22 @@ typedef struct
 #define RCC_CFGR_MCO_HSI                     0x05000000U                        /*!< HSI clock selected as MCO source */
 #define RCC_CFGR_MCO_HSE                     0x06000000U                        /*!< HSE clock selected as MCO source  */
 #define RCC_CFGR_MCO_PLLCLK_DIV2             0x07000000U                        /*!< PLL clock divided by 2 selected as MCO source */
+
+#define RCC_MCO_PLLCLK_DIV2                  (0x00000001U | RCC_CFGR_MCO_PLLCLK_DIV2)
+#define RCC_MCO_PLLCLK_DIV3                  (0x00000002U | RCC_CFGR_MCO_PLLCLK_DIV2)
+#define RCC_MCO_PLLCLK_DIV4                  (0x00000003U | RCC_CFGR_MCO_PLLCLK_DIV2)
+#define RCC_MCO_PLLCLK_DIV5                  (0x00000004U | RCC_CFGR_MCO_PLLCLK_DIV2)
+#define RCC_MCO_PLLCLK_DIV6                  (0x00000005U | RCC_CFGR_MCO_PLLCLK_DIV2)
+#define RCC_MCO_PLLCLK_DIV7                  (0x00000006U | RCC_CFGR_MCO_PLLCLK_DIV2)
+#define RCC_MCO_PLLCLK_DIV8                  (0x00000007U | RCC_CFGR_MCO_PLLCLK_DIV2)
+#define RCC_MCO_PLLCLK_DIV9                  (0x00000008U | RCC_CFGR_MCO_PLLCLK_DIV2)
+#define RCC_MCO_PLLCLK_DIV10                 (0x00000009U | RCC_CFGR_MCO_PLLCLK_DIV2)
+#define RCC_MCO_PLLCLK_DIV11                 (0x0000000AU | RCC_CFGR_MCO_PLLCLK_DIV2)
+#define RCC_MCO_PLLCLK_DIV12                 (0x0000000BU | RCC_CFGR_MCO_PLLCLK_DIV2)
+#define RCC_MCO_PLLCLK_DIV13                 (0x0000000CU | RCC_CFGR_MCO_PLLCLK_DIV2)
+#define RCC_MCO_PLLCLK_DIV14                 (0x0000000DU | RCC_CFGR_MCO_PLLCLK_DIV2)
+#define RCC_MCO_PLLCLK_DIV15                 (0x0000000EU | RCC_CFGR_MCO_PLLCLK_DIV2)
+#define RCC_MCO_PLLCLK_DIV16                 (0x0000000FU | RCC_CFGR_MCO_PLLCLK_DIV2)
 
  /* Reference defines */
  #define RCC_CFGR_MCOSEL                      RCC_CFGR_MCO

@@ -117,7 +117,14 @@ extern "C" {
 
 #define IS_RCC_MCO1SOURCE(__SOURCE__) (((__SOURCE__) == RCC_MCO1SOURCE_SYSCLK)  || ((__SOURCE__) == RCC_MCO1SOURCE_HSI) \
                                     || ((__SOURCE__) == RCC_MCO1SOURCE_HSE)     || ((__SOURCE__) == RCC_MCO1SOURCE_PLLCLK) \
-                                    || ((__SOURCE__) == RCC_MCO1SOURCE_NOCLOCK))
+                                    || ((__SOURCE__) == RCC_MCO1SOURCE_NOCLOCK) || ((__SOURCE__) == RCC_MCO1SOURCE_PLLCLK_DIV3) \
+                                    || ((__SOURCE__) == RCC_MCO1SOURCE_PLLCLK_DIV4) || ((__SOURCE__) == RCC_MCO1SOURCE_PLLCLK_DIV5) \
+                                    || ((__SOURCE__) == RCC_MCO1SOURCE_PLLCLK_DIV6) || ((__SOURCE__) == RCC_MCO1SOURCE_PLLCLK_DIV7) \
+                                    || ((__SOURCE__) == RCC_MCO1SOURCE_PLLCLK_DIV8) || ((__SOURCE__) == RCC_MCO1SOURCE_PLLCLK_DIV9) \
+                                    || ((__SOURCE__) == RCC_MCO1SOURCE_PLLCLK_DIV10) || ((__SOURCE__) == RCC_MCO1SOURCE_PLLCLK_DIV11) \
+                                    || ((__SOURCE__) == RCC_MCO1SOURCE_PLLCLK_DIV12) || ((__SOURCE__) == RCC_MCO1SOURCE_PLLCLK_DIV13) \
+                                    || ((__SOURCE__) == RCC_MCO1SOURCE_PLLCLK_DIV14) || ((__SOURCE__) == RCC_MCO1SOURCE_PLLCLK_DIV15) \
+                                    || ((__SOURCE__) == RCC_MCO1SOURCE_PLLCLK_DIV16))
 
 #endif /* AIR32F105xC || AIR32F107xC*/
 
@@ -595,6 +602,21 @@ typedef struct
 #define RCC_MCO1SOURCE_HSI               ((uint32_t)RCC_CFGR_MCO_HSI)
 #define RCC_MCO1SOURCE_HSE               ((uint32_t)RCC_CFGR_MCO_HSE)
 #define RCC_MCO1SOURCE_PLLCLK            ((uint32_t)RCC_CFGR_MCO_PLLCLK_DIV2)
+#define RCC_MCO1SOURCE_PLLCLK_DIV2       ((uint32_t)RCC_MCO_PLLCLK_DIV2)
+#define RCC_MCO1SOURCE_PLLCLK_DIV3       ((uint32_t)RCC_MCO_PLLCLK_DIV3)
+#define RCC_MCO1SOURCE_PLLCLK_DIV4       ((uint32_t)RCC_MCO_PLLCLK_DIV4)
+#define RCC_MCO1SOURCE_PLLCLK_DIV5       ((uint32_t)RCC_MCO_PLLCLK_DIV5)
+#define RCC_MCO1SOURCE_PLLCLK_DIV6       ((uint32_t)RCC_MCO_PLLCLK_DIV6)
+#define RCC_MCO1SOURCE_PLLCLK_DIV7       ((uint32_t)RCC_MCO_PLLCLK_DIV7)
+#define RCC_MCO1SOURCE_PLLCLK_DIV8       ((uint32_t)RCC_MCO_PLLCLK_DIV8)
+#define RCC_MCO1SOURCE_PLLCLK_DIV9       ((uint32_t)RCC_MCO_PLLCLK_DIV9)
+#define RCC_MCO1SOURCE_PLLCLK_DIV10      ((uint32_t)RCC_MCO_PLLCLK_DIV10)
+#define RCC_MCO1SOURCE_PLLCLK_DIV11      ((uint32_t)RCC_MCO_PLLCLK_DIV11)
+#define RCC_MCO1SOURCE_PLLCLK_DIV12      ((uint32_t)RCC_MCO_PLLCLK_DIV12)
+#define RCC_MCO1SOURCE_PLLCLK_DIV13      ((uint32_t)RCC_MCO_PLLCLK_DIV13)
+#define RCC_MCO1SOURCE_PLLCLK_DIV14      ((uint32_t)RCC_MCO_PLLCLK_DIV14)
+#define RCC_MCO1SOURCE_PLLCLK_DIV15      ((uint32_t)RCC_MCO_PLLCLK_DIV15)
+#define RCC_MCO1SOURCE_PLLCLK_DIV16      ((uint32_t)RCC_MCO_PLLCLK_DIV16)
 #if defined(AIR32F105xC) || defined(AIR32F107xC)
 #define RCC_MCO1SOURCE_PLL2CLK           ((uint32_t)RCC_CFGR_MCO_PLL2CLK)
 #define RCC_MCO1SOURCE_PLL3CLK_DIV2      ((uint32_t)RCC_CFGR_MCO_PLL3CLK_DIV2)

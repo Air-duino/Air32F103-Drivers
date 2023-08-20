@@ -563,6 +563,10 @@ typedef struct
   __IO uint32_t BDCR;
   __IO uint32_t CSR;
 
+  __IO uint32_t RCC_RSVD1[(0x30-0x28) >> 2];
+  __IO uint32_t RCC_MCO_VAL;
+  __IO uint32_t RCC_RSVD2[(0xF0-0x34) >> 2];
+  __IO uint32_t RCC_SYSCFG_CONFIG;
 
 } RCC_TypeDef;
 
